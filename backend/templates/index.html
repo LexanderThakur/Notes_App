@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script src="static/js/app.js"></script>
+    <style>
+      .notes_input {
+        width: 80vh;
+        height: 20vh;
+      }
+      /* .save_button {
+        height: 5%;
+        width: 5%;
+      } */
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    {% csrf_token %}
+    <h3>Welcome to Notes App</h3>
+    <p>Enter your notes here:</p>
+
+    <textarea class="notes_input" name=""></textarea>
+    <br />
+    <button onclick="saveNote()" class="save_button btn btn-primary">
+      Save
+    </button>
+  </body>
+</html>
