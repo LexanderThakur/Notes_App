@@ -30,7 +30,6 @@
     </style>
   </head>
   <body>
-    {% csrf_token %}
     <h3>Welcome to Notes App</h3>
     <p>Enter your notes here:</p>
 
@@ -39,5 +38,7 @@
     <button onclick="saveNote()" class="save_button btn btn-primary">
       Save
     </button>
+
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}" />
   </body>
 </html>
