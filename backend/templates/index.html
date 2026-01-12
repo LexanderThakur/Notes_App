@@ -22,23 +22,88 @@
       } */
       body {
         height: 100vh;
-        display: flex;
+      }
+      .create_tab {
+        /* display: flex; */
+        display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
+      nav {
+        display: flex;
+        justify-content: center;
+      }
+      span {
+        margin: 2em;
+        transition: 500ms ease;
+      }
+      span:hover {
+        cursor: pointer;
+        scale: 1.2;
+      }
+      .create_tab.animate {
+        animation: down 1s ease forwards;
+      }
+
+      @keyframes down {
+        0% {
+        }
+        99% {
+          transform: translateY(100%);
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      .read_tab {
+        height: 80%;
+        width: 70%;
+        margin: auto;
+        display: flex;
+      }
+      .notes {
+        height: 100%;
+        width: 30%;
+        border: solid;
+        border-color: black;
+      }
+      .read_notes {
+        height: 100%;
+        width: 70%;
+        border: solid;
+        border-color: blue;
+      }
     </style>
   </head>
   <body>
-    <h3>Welcome to Notes App</h3>
-    <p>Enter your notes here:</p>
-
-    <textarea class="notes_input" name=""></textarea>
+    <nav>
+      <span>Create Notes</span>
+      <!-- <span onclick="drop_down()">Read Notes</span> -->
+      <span>Read Notes</span>
+    </nav>
     <br />
-    <button onclick="saveNote()" class="save_button btn btn-primary">
-      Save
-    </button>
 
+    <div class="read_tab">
+      <div class="notes">
+        <ul>
+          <li>Note 1</li>
+          <li>Note 2</li>
+        </ul>
+      </div>
+      <div class="read_notes"></div>
+    </div>
+
+    <div class="create_tab">
+      <h3>Welcome to Notes App</h3>
+      <p>Enter your notes here:</p>
+
+      <textarea class="notes_input" name=""></textarea>
+      <br />
+      <button onclick="saveNote()" class="save_button btn btn-primary">
+        Save
+      </button>
+    </div>
     <input type="hidden" id="csrf-token" value="{{ csrf_token }}" />
   </body>
 </html>

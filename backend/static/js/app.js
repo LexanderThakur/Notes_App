@@ -22,3 +22,17 @@ async function saveNote() {
     alert(err || "Network error");
   }
 }
+
+function drop_down() {
+  let box = document.querySelector(".create_tab");
+
+  box.classList.add("animate");
+  box.addEventListener(
+    "animationend",
+    () => {
+      box.classList.remove("animate");
+      box.style.display = "none";
+    },
+    { once: true }
+  );
+}
