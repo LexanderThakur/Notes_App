@@ -10,8 +10,14 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <script src="static/js/app.js"></script>
+
     <style>
+      :root {
+        --bg: #f1f3f6;
+        --shadow-dark: rgba(0, 0, 0, 0.15);
+        --shadow-light: rgba(255, 255, 255, 0.9);
+      }
+
       .notes_input {
         width: 80vh;
         height: 20vh;
@@ -22,6 +28,7 @@
       } */
       body {
         height: 100vh;
+        background-color: #f1f3f6;
       }
       .create_tab {
         /* display: flex; */
@@ -65,8 +72,8 @@
       .notes {
         height: 100%;
         width: 30%;
-        border: solid;
-        border-color: black;
+        /* border: solid;
+        border-color: black; */
       }
       .read_notes {
         height: 100%;
@@ -74,21 +81,45 @@
         border: solid;
         border-color: blue;
       }
+      .note {
+        background: var(--bg);
+        border: none;
+        border-radius: 12px;
+        margin: 12px;
+        transition: all 0.15s ease;
+
+        box-shadow: 6px 6px 12px var(--shadow-dark),
+          -6px -6px 12px var(--shadow-light);
+      }
+
+      .note:hover {
+        box-shadow: 4px 4px 10px var(--shadow-dark),
+          -4px -4px 10px var(--shadow-light);
+      }
+      .note:active {
+        box-shadow: inset 4px 4px 8px var(--shadow-dark),
+          inset -4px -4px 8px var(--shadow-light);
+      }
     </style>
   </head>
   <body>
     <nav>
       <span>Create Notes</span>
       <!-- <span onclick="drop_down()">Read Notes</span> -->
-      <span>Read Notes</span>
+      <span onclick="render_notes()">Read Notes</span>
     </nav>
     <br />
 
     <div class="read_tab">
       <div class="notes">
-        <ul>
-          <li>Note 1</li>
-          <li>Note 2</li>
+        <!-- <p class="note">created at 10-12-26</p>
+        <p class="note">created at 11-12-25</p> -->
+        <ul class="list-group">
+          <li class="list-group-item note">An item</li>
+          <li class="list-group-item note">A second item</li>
+          <li class="list-group-item note">A third item</li>
+          <li class="list-group-item note">A fourth item</li>
+          <li class="list-group-item note">And a fifth one</li>
         </ul>
       </div>
       <div class="read_notes"></div>
@@ -105,5 +136,6 @@
       </button>
     </div>
     <input type="hidden" id="csrf-token" value="{{ csrf_token }}" />
+    <script src="static/js/app.js"></script>
   </body>
 </html>
