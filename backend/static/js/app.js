@@ -1,6 +1,7 @@
 console.log("connected");
 
 let csrftoken = document.getElementById("csrf-token").value;
+let notes = [];
 async function saveNote() {
   let note = document.getElementsByClassName("notes_input")[0].value;
 
@@ -25,7 +26,6 @@ async function saveNote() {
 }
 
 async function render_notes() {
-  let notes = [];
   try {
     let response = await fetch("/notes/get_notes/", {
       method: "GET",
@@ -40,11 +40,16 @@ async function render_notes() {
   } catch (err) {
     alert(err || "network err");
   }
+  document.querySelector(".read_tab").style.display = "flex";
+  render();
+}
+function render() {
   let list = document.querySelector(".list-group");
+
   let str = ``;
   notes.forEach((i) => {
     str += `
-      <li class="list-group-item note" id="${i.id}">${i["created_at"]}</li>
+      <li class="list-group-item note" data-id="${i.id}" onclick="display_note(${i.id})">${i["created_at"]}</li>
       
       `;
   });
@@ -60,9 +65,35 @@ function drop_down() {
     () => {
       box.classList.remove("animate");
       box.style.display = "none";
+      render_notes();
     },
     { once: true }
   );
+}
 
-  render_notes();
+function display_note(note_id) {
+  let content = ``;
+  for (let i = 0; i < notes.length; i++) {
+    if (notes[i].id == note_id) {
+      content = notes[i].content;
+    }
+    document
+      .querySelector(`[data-id="${notes[i].id}"]`)
+      .classList.remove("note-active");
+  }
+
+  let note = document.querySelector(`[data-id="${note_id}"]`);
+  note.classList.add("note-active");
+  let read_area = document.querySelector(".read_notes");
+  read_area.innerHTML = `
+    <span class="txt">
+    ${content}
+    </span>
+  
+  `;
+}
+
+function create_notes_tab() {
+  document.querySelector(".read_tab").style.display = "none";
+  document.querySelector(".create_tab").style.display = "flex";
 }

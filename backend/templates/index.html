@@ -31,8 +31,8 @@
         background-color: #f1f3f6;
       }
       .create_tab {
-        /* display: flex; */
-        display: none;
+        display: flex;
+        /* display: none; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -50,7 +50,7 @@
         scale: 1.2;
       }
       .create_tab.animate {
-        animation: down 1s ease forwards;
+        animation: down 1s ease;
       }
 
       @keyframes down {
@@ -67,7 +67,7 @@
         height: 80%;
         width: 70%;
         margin: auto;
-        display: flex;
+        display: none;
       }
       .notes {
         height: 100%;
@@ -78,8 +78,8 @@
       .read_notes {
         height: 100%;
         width: 70%;
-        border: solid;
-        border-color: blue;
+        background-color: rgb(250, 251, 252);
+        border-radius: 20px;
       }
       .note {
         background: var(--bg);
@@ -96,31 +96,26 @@
         box-shadow: 4px 4px 10px var(--shadow-dark),
           -4px -4px 10px var(--shadow-light);
       }
-      .note:active {
+      .note.note-active {
         box-shadow: inset 4px 4px 8px var(--shadow-dark),
           inset -4px -4px 8px var(--shadow-light);
+      }
+      .txt {
+        margin-left: 3rem;
       }
     </style>
   </head>
   <body>
     <nav>
-      <span>Create Notes</span>
+      <span onclick="create_notes_tab()">Create Notes</span>
       <!-- <span onclick="drop_down()">Read Notes</span> -->
-      <span onclick="render_notes()">Read Notes</span>
+      <span onclick="drop_down()">Read Notes</span>
     </nav>
     <br />
 
     <div class="read_tab">
       <div class="notes">
-        <!-- <p class="note">created at 10-12-26</p>
-        <p class="note">created at 11-12-25</p> -->
-        <ul class="list-group">
-          <li class="list-group-item note">An item</li>
-          <li class="list-group-item note">A second item</li>
-          <li class="list-group-item note">A third item</li>
-          <li class="list-group-item note">A fourth item</li>
-          <li class="list-group-item note">And a fifth one</li>
-        </ul>
+        <ul class="list-group"></ul>
       </div>
       <div class="read_notes"></div>
     </div>

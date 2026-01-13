@@ -13,7 +13,13 @@ def get_note(request):
     content= models.CharField(max_length=2000)
     created_at= models.DateField(auto_now_add=True)
     """
+    
+
     for q in qs:
+
+        
+
+        
         notes.append(
 
             {
